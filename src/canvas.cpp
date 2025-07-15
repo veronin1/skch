@@ -44,6 +44,9 @@ void createCanvas() {
       mousePrevY = mouseY;
     } else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
       erase();
+    } else {
+      mousePrevX = GetMouseX();
+      mousePrevY = GetMouseY();
     }
 
     EndTextureMode();
