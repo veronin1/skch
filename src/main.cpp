@@ -1,5 +1,3 @@
 #include "canvas.hpp"
 
-int main() {
-    createCanvas();
-}
+int main() { createCanvas(); }

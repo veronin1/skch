@@ -2,5 +2,6 @@
 #define CANVAS_HPP
 
 void createCanvas();
+void draw();
 
 #endif
