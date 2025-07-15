@@ -20,7 +20,7 @@ void createCanvas() {
 
   SetTargetFPS(targetFPS);
 
-  const RenderTexture2D texture = LoadRenderTexture(width, height);
+  RenderTexture2D texture = LoadRenderTexture(width, height);
 
   BeginTextureMode(texture);
   ClearBackground(BLACK);
@@ -31,18 +31,22 @@ void createCanvas() {
 
   while (!WindowShouldClose()) {
     if (IsKeyPressed(KEY_SPACE)) {
-      clear();
+      clear(texture);
     }
 
     BeginTextureMode(texture);
 
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-      DrawLine(mousePrevX, mousePrevY, GetMouseX(), GetMouseY(), WHITE);
-      mousePrevX = GetMouseX();
-      mousePrevY = GetMouseY();
+      const int mouseX = GetMouseX();
+      const int mouseY = GetMouseY();
+      DrawLine(mousePrevX, mousePrevY, mouseX, mouseY, WHITE);
+      mousePrevX = mouseX;
+      mousePrevY = mouseY;
     } else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
       erase();
     }
+
+    EndTextureMode();
 
     BeginDrawing();
     ClearBackground(BLACK);
