@@ -19,21 +19,35 @@ void createCanvas() {
   }
 
   SetTargetFPS(targetFPS);
+
+  RenderTexture2D texture = LoadRenderTexture(width, height);
+
+  BeginTextureMode(texture);
   ClearBackground(BLACK);
+  EndTextureMode();
 
   while (!WindowShouldClose()) {
-    BeginDrawing();
+    BeginTextureMode(texture);
+
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
       draw();
     } else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
       erase();
     }
+    EndTextureMode();
+    BeginDrawing();
+    ClearBackground(BLACK);
+    DrawTexture(texture.texture, 0, 0, WHITE);
 
     EndDrawing();
+
     if (IsKeyPressed(KEY_ESCAPE)) {
       CloseWindow();
     }
   }
+
+  UnloadRenderTexture(texture);
+  CloseWindow();
 }
 
 void draw() { DrawCircle(GetMouseX(), GetMouseY(), circleRadius, WHITE); }
