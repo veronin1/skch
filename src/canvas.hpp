@@ -3,5 +3,6 @@
 
 void createCanvas();
 void draw();
+void erase();
 
 #endif

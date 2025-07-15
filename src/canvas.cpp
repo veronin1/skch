@@ -9,6 +9,7 @@ const int height = 720;
 const char* const title = "skch";
 const int targetFPS = 240;
 const float circleRadius = 2.50F;
+const float eraseMultiplier = 15.0F;
 
 void createCanvas() {
   SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -22,8 +23,10 @@ void createCanvas() {
 
   while (!WindowShouldClose()) {
     BeginDrawing();
-    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
       draw();
+    } else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+      erase();
     }
 
     EndDrawing();
@@ -34,3 +37,7 @@ void createCanvas() {
 }
 
 void draw() { DrawCircle(GetMouseX(), GetMouseY(), circleRadius, WHITE); }
+
+void erase() {
+  DrawCircle(GetMouseX(), GetMouseY(), circleRadius * eraseMultiplier, BLACK);
+}
