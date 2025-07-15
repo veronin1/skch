@@ -10,6 +10,7 @@ SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(skch
     src/main.cpp
+    src/canvas.cpp
 )
 
 target_compile_options(skch PRIVATE
