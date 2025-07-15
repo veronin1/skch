@@ -4,8 +4,8 @@
 
 #include <stdexcept>
 
-const int width = 1280;
-const int height = 720;
+const int width = 2560;
+const int height = 1440;
 const char* const title = "skch";
 const int targetFPS = 240;
 const float circleRadius = 2.50F;
@@ -20,19 +20,28 @@ void createCanvas() {
 
   SetTargetFPS(targetFPS);
 
-  RenderTexture2D texture = LoadRenderTexture(width, height);
+  const RenderTexture2D texture = LoadRenderTexture(width, height);
 
   BeginTextureMode(texture);
   ClearBackground(BLACK);
   EndTextureMode();
 
+  int mousePrevX = GetMouseX();
+  int mousePrevY = GetMouseY();
+
   while (!WindowShouldClose()) {
     BeginTextureMode(texture);
 
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-      draw();
+      DrawLine(mousePrevX, mousePrevY, GetMouseX(), GetMouseY(), WHITE);
+      mousePrevX = GetMouseX();
+      mousePrevY = GetMouseY();
     } else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
       erase();
+    } else if (IsKeyPressed(KEY_SPACE)) {
+      BeginTextureMode(texture);
+      ClearBackground(BLACK);
+      EndTextureMode();
     }
     EndTextureMode();
     BeginDrawing();
@@ -51,13 +60,13 @@ void createCanvas() {
 }
 
 void draw() {
-  int mouseX = GetMouseX();
-  int mouseY = height - GetMouseY();
+  const int mouseX = GetMouseX();
+  const int mouseY = height - GetMouseY();
   DrawCircle(mouseX, mouseY, circleRadius, WHITE);
 }
 
 void erase() {
-  int mouseX = GetMouseX();
-  int mouseY = height - GetMouseY();
+  const int mouseX = GetMouseX();
+  const int mouseY = height - GetMouseY();
   DrawCircle(mouseX, mouseY, circleRadius * eraseMultiplier, BLACK);
 }
