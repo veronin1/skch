@@ -30,6 +30,10 @@ void createCanvas() {
   int mousePrevY = GetMouseY();
 
   while (!WindowShouldClose()) {
+    if (IsKeyPressed(KEY_SPACE)) {
+      clear();
+    }
+
     BeginTextureMode(texture);
 
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
@@ -38,10 +42,8 @@ void createCanvas() {
       mousePrevY = GetMouseY();
     } else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
       erase();
-    } else if (IsKeyPressed(KEY_SPACE)) {
-      clear();
     }
-    EndTextureMode();
+
     BeginDrawing();
     ClearBackground(BLACK);
     DrawTexture(texture.texture, 0, 0, WHITE);
