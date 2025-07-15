@@ -50,8 +50,14 @@ void createCanvas() {
   CloseWindow();
 }
 
-void draw() { DrawCircle(GetMouseX(), GetMouseY(), circleRadius, WHITE); }
+void draw() {
+  int mouseX = GetMouseX();
+  int mouseY = height - GetMouseY();
+  DrawCircle(mouseX, mouseY, circleRadius, WHITE);
+}
 
 void erase() {
-  DrawCircle(GetMouseX(), GetMouseY(), circleRadius * eraseMultiplier, BLACK);
+  int mouseX = GetMouseX();
+  int mouseY = height - GetMouseY();
+  DrawCircle(mouseX, mouseY, circleRadius * eraseMultiplier, BLACK);
 }
