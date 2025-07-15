@@ -7,8 +7,8 @@
 const int width = 1280;
 const int height = 720;
 const char* const title = "skch";
-const int targetFPS = 60;
-const float circleRadius = 5;
+const int targetFPS = 240;
+const float circleRadius = 2.50F;
 
 void createCanvas() {
   SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -22,7 +22,7 @@ void createCanvas() {
 
   while (!WindowShouldClose()) {
     BeginDrawing();
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+    if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
       draw();
     }
 
