@@ -39,9 +39,7 @@ void createCanvas() {
     } else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
       erase();
     } else if (IsKeyPressed(KEY_SPACE)) {
-      BeginTextureMode(texture);
-      ClearBackground(BLACK);
-      EndTextureMode();
+      clear();
     }
     EndTextureMode();
     BeginDrawing();
@@ -69,4 +67,10 @@ void erase() {
   const int mouseX = GetMouseX();
   const int mouseY = height - GetMouseY();
   DrawCircle(mouseX, mouseY, circleRadius * eraseMultiplier, BLACK);
+}
+
+void clear(RenderTexture2D& texture) {
+  BeginTextureMode(texture);
+  ClearBackground(BLACK);
+  EndTextureMode();
 }
