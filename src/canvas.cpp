@@ -38,7 +38,7 @@ void createCanvas() {
 
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
       const int mouseX = GetMouseX();
-      const int mouseY = GetMouseY();
+      const int mouseY = height - GetMouseY();
       DrawLine(mousePrevX, mousePrevY, mouseX, mouseY, WHITE);
       mousePrevX = mouseX;
       mousePrevY = mouseY;
