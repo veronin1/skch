@@ -39,13 +39,14 @@ void createCanvas() {
     Vector2 mousePos = {float(GetMouseX()), (float)(height - GetMouseY())};
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-      draw();
+      DrawCircle((int)mousePos.x, (int)mousePos.y, circleRadius, WHITE);
       mousePos = mousePrevPos;
     } else if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
       DrawLineEx(mousePrevPos, mousePos, lineThickness, WHITE);
       mousePrevPos = mousePos;
     } else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
-      erase();
+      DrawCircle((int)mousePos.x, (int)mousePos.y,
+                 circleRadius * eraseMultiplier, BLACK);
     } else {
       mousePrevPos = mousePos;
     }
@@ -65,18 +66,6 @@ void createCanvas() {
 
   UnloadRenderTexture(texture);
   CloseWindow();
-}
-
-void draw() {
-  const int mouseX = GetMouseX();
-  const int mouseY = height - GetMouseY();
-  DrawCircle(mouseX, mouseY, circleRadius, WHITE);
-}
-
-void erase() {
-  const int mouseX = GetMouseX();
-  const int mouseY = height - GetMouseY();
-  DrawCircle(mouseX, mouseY, circleRadius * eraseMultiplier, BLACK);
 }
 
 void clear(RenderTexture2D& texture) {
