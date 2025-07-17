@@ -3,8 +3,6 @@
 
 #include <raylib.h>
 void createCanvas();
-void draw();
-void erase();
 void clear(RenderTexture2D& texture);
 
 #endif
