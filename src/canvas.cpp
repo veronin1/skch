@@ -27,8 +27,7 @@ void createCanvas() {
   ClearBackground(BLACK);
   EndTextureMode();
 
-  int mousePrevX = GetMouseX();
-  int mousePrevY = height - GetMouseY();
+  Vector2 mousePrevPos = {(float)GetMouseX(), (float)(height - GetMouseY())};
 
   while (!WindowShouldClose()) {
     if (IsKeyPressed(KEY_SPACE)) {
@@ -37,24 +36,18 @@ void createCanvas() {
 
     BeginTextureMode(texture);
 
-    const int mouseX = GetMouseX();
-    const int mouseY = height - GetMouseY();
+    Vector2 mousePos = {float(GetMouseX()), (float)(height - GetMouseY())};
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
       draw();
-      mousePrevX = mouseX;
-      mousePrevY = mouseY;
+      mousePos = mousePrevPos;
     } else if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-      Vector2 startPos = {(float)mousePrevX, (float)mousePrevY};
-      Vector2 endPos = {(float)mouseX, (float)mouseY};
-      DrawLineEx(startPos, endPos, lineThickness, WHITE);
-      mousePrevX = mouseX;
-      mousePrevY = mouseY;
+      DrawLineEx(mousePrevPos, mousePos, lineThickness, WHITE);
+      mousePrevPos = mousePos;
     } else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
       erase();
     } else {
-      mousePrevX = mouseX;
-      mousePrevY = mouseY;
+      mousePrevPos = mousePos;
     }
 
     EndTextureMode();
