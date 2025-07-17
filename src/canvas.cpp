@@ -10,6 +10,7 @@ const char* const title = "skch";
 const int targetFPS = 240;
 const float circleRadius = 2.50F;
 const float eraseMultiplier = 15.0F;
+const float lineThickness = 4.0F;
 
 void createCanvas() {
   SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -38,14 +39,15 @@ void createCanvas() {
 
     const int mouseX = GetMouseX();
     const int mouseY = height - GetMouseY();
-        
+
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
       draw();
       mousePrevX = mouseX;
       mousePrevY = mouseY;
-    }
-    else if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-      DrawLine(mousePrevX, mousePrevY, mouseX, mouseY, WHITE);
+    } else if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+      Vector2 startPos = {(float)mousePrevX, (float)mousePrevY};
+      Vector2 endPos = {(float)mouseX, (float)mouseY};
+      DrawLineEx(startPos, endPos, lineThickness, WHITE);
       mousePrevX = mouseX;
       mousePrevY = mouseY;
     } else if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
