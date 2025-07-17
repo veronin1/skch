@@ -4,10 +4,10 @@ A minimalistic blackboard-style drawing app for jotting down quick notes and ske
 
 ## Keybinds
 
-`space`: clear screen
-`press lmb`: draw single pixel
-`hold lmb`: draw line
-`hold rmb`: eraser
+`space`: clear screen  
+`press lmb`: draw single pixel  
+`hold lmb`: draw line  
+`hold rmb`: eraser  
 `esc`: close window
 
 ## Requirements
