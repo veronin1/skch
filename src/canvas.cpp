@@ -71,6 +71,7 @@ void createCanvas() {
       strftime(arr.data(), arr.size(), "%Y-%m-%d_%H-%M-%S", &time);
       Image image = LoadImageFromTexture(texture.texture);
       ExportImage(image, arr.data());
+      UnloadImage(image);
       break;
     }
   }
