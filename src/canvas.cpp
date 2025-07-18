@@ -64,7 +64,6 @@ void createCanvas() {
     EndDrawing();
 
     if (IsKeyPressed(KEY_ESCAPE)) {
-      CloseWindow();
       time_t currentTime = std::time(nullptr);
       tm* timePtr = std::localtime(&currentTime);
       tm time = *timePtr;
@@ -72,6 +71,7 @@ void createCanvas() {
       strftime(arr.data(), arr.size(), "%Y-%m-%d_%H-%M-%S", &time);
       Image image = LoadImageFromTexture(texture.texture);
       ExportImage(image, arr.data());
+      break;
     }
   }
 
