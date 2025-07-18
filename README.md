@@ -14,7 +14,7 @@ A minimalistic blackboard-style drawing app for jotting down quick notes and ske
 
 -   CMake >= 3.10
 -   C++17-compatible compiler (e.g. `clang++` or `g++`)
--   (Optional) `clang-tidy` for static analysis
+-   raylib
 
 ## Build Instructions
 
