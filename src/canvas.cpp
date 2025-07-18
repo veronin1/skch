@@ -2,6 +2,8 @@
 
 #include <raylib.h>
 
+#include <array>
+#include <ctime>
 #include <stdexcept>
 
 const int width = 2560;
@@ -11,6 +13,8 @@ const int targetFPS = 240;
 const float circleRadius = 2.50F;
 const float eraseMultiplier = 15.0F;
 const float lineThickness = 4.0F;
+
+const int timeArraySize = 30;
 
 void createCanvas() {
   SetWindowState(FLAG_WINDOW_RESIZABLE);
@@ -61,6 +65,13 @@ void createCanvas() {
 
     if (IsKeyPressed(KEY_ESCAPE)) {
       CloseWindow();
+      time_t currentTime = std::time(nullptr);
+      tm* timePtr = std::localtime(&currentTime);
+      tm time = *timePtr;
+      std::array<char, timeArraySize> arr{};
+      strftime(arr.data(), arr.size(), "%Y-%m-%d_%H-%M-%S", &time);
+      Image image = LoadImageFromTexture(texture.texture);
+      ExportImage(image, arr.data());
     }
   }
 
