@@ -3,7 +3,9 @@
 #include <raylib.h>
 
 #include <array>
+#include <cstdlib>
 #include <ctime>
+#include <filesystem>
 #include <stdexcept>
 
 const int width = 2560;
@@ -70,7 +72,17 @@ void createCanvas() {
       std::array<char, timeArraySize> arr{};
       strftime(arr.data(), arr.size(), "%Y-%m-%d_%H-%M-%S", &time);
       Image image = LoadImageFromTexture(texture.texture);
-      ExportImage(image, arr.data());
+      const char* env_p = std::getenv("XDG_DATA_HOME");
+      if (env_p == nullptr) {
+        env_p = std::getenv("HOME");
+      }
+      std::string basePath = std::string(env_p) + "/skch/images/";
+      std::filesystem::create_directories(basePath);
+
+      std::string fileName = std::string(arr.data()) + ".png";
+      std::string fullFilePath = basePath + fileName;
+
+      ExportImage(image, fullFilePath.c_str());
       UnloadImage(image);
       break;
     }
