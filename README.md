@@ -2,6 +2,10 @@
 
 A minimalistic blackboard-style drawing app for jotting down quick notes and sketches to aid visual understanding made for myself.
 
+## Demo
+
+![skch demo](example/2025-07-19_19-29-39.png)
+
 ## Keybinds
 
 `space`: clear screen  
